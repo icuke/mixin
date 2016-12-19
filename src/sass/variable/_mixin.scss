@@ -1,0 +1,60 @@
+@mixin wrap($c:cuke, $w:300px, $h:$w) {
+    .#{$c}{
+        position:absolute;
+        top:50%;
+        left:50%;
+        width:$w;
+        height:$h;
+        transform:translate3d(-50%, -50%, 0);
+    }
+}
+
+@mixin bg($color:#000, $alpha:.6, $top:0, $bottom:0, $height:auto, $pos:relative) {
+
+    position:$pos;
+
+    &:before{
+        content:"";
+        position:absolute;
+        z-index:-1;
+        top:$top;
+        left:0;
+        right:0;
+        bottom:$bottom;
+        height:$height;
+        background:$color;
+        opacity:$alpha;
+        filter:alpha(opacity=$alpha*100);
+    }
+}
+
+@mixin bd($ele, $color:#666, $dis:6px, $bdW:1px,  $pos:relative) {
+
+    overflow:hidden;
+
+    #{$ele}{
+        position:$pos;
+
+        &:after,
+        &:before{
+            content:"";
+            position:absolute;
+        }
+    
+        &:after{
+            top:-$bdW;
+            left:$dis;
+            right:$dis;
+            height:$bdW;
+            background:$color,;
+        }
+
+        &:before{
+            left:-$bdW;
+            top:$dis;
+            bottom:$dis;
+            width:$bdW;
+            background:$color,;
+        }
+    }
+}
